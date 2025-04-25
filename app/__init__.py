@@ -18,7 +18,7 @@ def create_app():
     else:
         app.config.from_object("config.DevelopmentConfig")
 
-    CORS(app)  # For dev only
+    CORS(app, origins=["https://swot-sim-game.vercel.app", "http://localhost:3000"])
 
     db.init_app(app)
     migrate.init_app(app, db)
