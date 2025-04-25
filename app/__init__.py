@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
 from app.socketio import socketio
+import os
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -10,7 +11,12 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object("config.DevelopmentConfig")
+
+    flask_env = os.environ.get("FLASK_ENV", "development")
+    if flask_env == "production":
+        app.config.from_object("config.ProductionConfig")
+    else:
+        app.config.from_object("config.DevelopmentConfig")
 
     CORS(app)  # For dev only
 
