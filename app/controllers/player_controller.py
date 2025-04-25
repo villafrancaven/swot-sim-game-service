@@ -19,13 +19,13 @@ def submit_responses(player_id):
         player.brand_market_reason = data.get("brand_market_reason")
         player.brand_market_status = data.get(
             "brand_market_status", player.brand_market_status
-        )  # Update status
+        )
 
         player.tech_infra_score = data.get("tech_infra_score")
         player.tech_infra_reason = data.get("tech_infra_reason")
         player.tech_infra_status = data.get(
             "tech_infra_status", player.tech_infra_status
-        )  # Update status
+        )
 
         db.session.commit()
 
@@ -43,8 +43,6 @@ def submit_responses(player_id):
             },
             room=str(player.room.room_number),
         )
-
-        print(f"✅ Player {player.name} EMIT?!")
 
         return jsonify({"message": "Responses saved successfully"}), 200
 

@@ -113,8 +113,6 @@ def handle_player_submitted(data):
             room=room_number,
         )
 
-        print("SUPER EMIT?????!!!!!")
-
     except Exception as e:
         print(f"❌ Error processing player_submitted event: {e}")
         emit("error", {"message": "Failed to process player_submitted"})
