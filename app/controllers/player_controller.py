@@ -15,17 +15,19 @@ def submit_responses(player_id):
         return jsonify({"error": "Player not found"}), 404
 
     try:
-        player.brand_market_score = data.get("brand_market_score")
-        player.brand_market_reason = data.get("brand_market_reason")
-        player.brand_market_status = data.get(
-            "brand_market_status", player.brand_market_status
-        )
+        if "brand_market_score" in data:
+            player.brand_market_score = data.get("brand_market_score")
+        if "brand_market_reason" in data:
+            player.brand_market_reason = data.get("brand_market_reason")
+        if "brand_market_status" in data:
+            player.brand_market_status = data.get("brand_market_status")
 
-        player.tech_infra_score = data.get("tech_infra_score")
-        player.tech_infra_reason = data.get("tech_infra_reason")
-        player.tech_infra_status = data.get(
-            "tech_infra_status", player.tech_infra_status
-        )
+        if "tech_infra_score" in data:
+            player.tech_infra_score = data.get("tech_infra_score")
+        if "tech_infra_reason" in data:
+            player.tech_infra_reason = data.get("tech_infra_reason")
+        if "tech_infra_status" in data:
+            player.tech_infra_status = data.get("tech_infra_status")
 
         db.session.commit()
 
